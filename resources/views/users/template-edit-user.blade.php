@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('page-title')
-Add New User
+Edit User
 @endsection
 
 @section('page-subtitle')
@@ -17,38 +17,36 @@ Please fill in the form below
     </div>
     <div class="card-body">
 
-        @include('layouts.alerts')
-
-        <form method="POST" action="{{ route('users.store') }}">
+        <form method="POST" action="{{ route('users.update', 1) }}">
             @csrf
             <div class="row mb-3">
                 <div class="col-md-6">
                     <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" name="first_name" type="text" placeholder="Enter your first name" value="{{ old('first_name') }}" />
+                        <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
                         <label for="inputFirstName">First name</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input class="form-control" name="last_name" type="text" placeholder="Enter your last name" value="{{ old('last_name') }}" />
+                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
                         <label for="inputLastName">Last name</label>
                     </div>
                 </div>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" name="email" type="email" placeholder="name@example.com" value="{{ old('email') }}" />
+                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
                 <label for="inputEmail">Email address</label>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" name="password" type="password" placeholder="Create a password" />
+                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
                         <label for="inputPassword">Password</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" name="password_confirmation" type="password" placeholder="Confirm password" />
+                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
                         <label for="inputPasswordConfirm">Confirm Password</label>
                     </div>
                 </div>

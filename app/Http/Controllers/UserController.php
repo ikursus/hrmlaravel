@@ -27,7 +27,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'first_name' => ['required', 'min:3'],
+            'last_name' => ['required', 'min:3'],
+            'email' => ['required', 'email:filter'],
+            'password' => ['required', 'min:3', 'confirmed']
+        ]);
+
+        // $data = $request->only('first_name', 'last_name');
+        // $data = $request->except('_token');
+        // $data = $request->all();
+        //$data = $request->input('first_name'); // $request->first_name
+
+        return $data;
     }
 
     /**
@@ -43,7 +55,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('users.template-edit-user');
     }
 
     /**
