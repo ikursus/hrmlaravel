@@ -1,31 +1,14 @@
 <?php
 
-use App\Http\Controllers\Auth\ForgotPasswordController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
-Route::get('/', function() {
-    // Laravel akan cari folder resources/views
-    // dan template bernama welcome.php atau welcome.blade.php
-
-    $pageTitle = '<h1>Welcome Page</h1><script>alert("Anda dihack")</script>';
-    $subTitle = 'Sub Title';
-    $copyright = config('hrm.site.copyright');
-
-    $senaraiUsers = [
-        ['name' => 'Ahmad', 'email' => 'ahmad@gmail.com', 'status' => 'aktif'],
-        ['name' => 'Ali', 'email' => 'ali@gmail.com', 'status' => 'banned'],
-        ['name' => 'Abu', 'email' => 'abu@gmail.com', 'status' => 'pending'],
-    ];
-
-    // Cara 1 passing / attach data ke template
-    // return view('welcome')->with('pageTitle', $pageTitle)->with('subTitle', $subTitle)->with('copyright', $copyright);
-    // Cara 2 passing / attach data ke template
-    // return view('welcome', ['pageTitle' => $pageTitle, 'subTitle' => $subTitle,'copyright' => $copyright]);
-    // Cara 3 passing / attach data ke template
-    return view('welcome', compact('pageTitle', 'subTitle', 'copyright', 'senaraiUsers'));
-})->name('utama');
+Route::get('/', HomeController::class)->name('utama');
 
 // Routing untuk paparkan borang login
 Route::get('/signin', [LoginController::class, 'paparBorangLogin'])->name('login');
@@ -37,4 +20,33 @@ Route::post('/signup', [RegisterController::class, 'saveRegistration'])->name('r
 
 Route::get('/forgot-password', [ForgotPasswordController::class, 'paparBorangForgotPasword'])->name('password.forgot');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'requestPassword'])->name('password.request');
+
+Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+// Pengurusan Users
+// Route untuk paparkan senarai users dari DB
+// Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+// // Route untuk papar borang tambah user
+// Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+
+// // Route untuk terima data daripada borang tambah user dan simpan rekod
+// Route::get('/users/create', [UserController::class, 'store'])->name('users.store');
+
+// // Route untuk paparkan butiran / detail user yang dipilih berdasarkan parameter id / username etc
+// Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+
+// // Route untuk paparkan borang kemaskini user yang dipilih berdasarkan parameter id / username etc
+// Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+
+// // Route untuk terima data daripada borang edit user dan simpan rekod
+// Route::patch('/users/{user}/edit', [UserController::class, 'update'])->name('users.update');
+
+// // Route untuk hapus user daripada DB
+// Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+Route::resource('/users', UserController::class);
+
+
+
 
