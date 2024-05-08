@@ -40,9 +40,19 @@ Please fill in the form below
                     </div>
                 </div>
             </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" name="email" type="email" placeholder="name@example.com" value="{{ old('email') }}" />
-                <label for="inputEmail">Email address</label>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input class="form-control" name="email" type="email" placeholder="name@example.com" value="{{ old('email') }}" />
+                        <label for="inputEmail">Email address</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input class="form-control" name="text" type="phone" placeholder="0123456789" value="{{ old('phone') }}" />
+                        <label for="inputEmail">Phone</label>
+                    </div>
+                </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
@@ -62,16 +72,24 @@ Please fill in the form below
             <div class="row mb-3">
                 <div class="col-md-6">
                     <div class="form-floating mb-3 mb-md-0">
-                        <label for="inputFirstName">Role</label>
                         <select name="role" class="form-control">
-                            
+                            <option value="">-- Pilih Role --</option>
+                            @foreach (config('hrm.site.role') as $key => $value)
+                            <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
                         </select>
+                        <label for="inputFirstName">Role</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input class="form-control" name="last_name" type="text" placeholder="Enter your last name" value="{{ old('last_name') }}" />
-                        <label for="inputLastName">Last name</label>
+                        <select name="role" class="form-control">
+                            <option value="">-- Pilih Status --</option>
+                            @foreach (config('hrm.site.status.user') as $key => $value)
+                            <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
+                        <label for="inputFirstName">Role</label>
                     </div>
                 </div>
             </div>
