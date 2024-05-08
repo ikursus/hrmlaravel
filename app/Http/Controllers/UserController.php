@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -11,7 +12,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.template-senarai-users');
+        // Dapatkan senarai users daripada table users
+        $senaraiUsers = DB::table('users')->get();
+        // $senaraiUsers = DB::select('SELECT * FROM users');
+
+        return view('users.template-senarai-users', compact('senaraiUsers'));
     }
 
     /**
