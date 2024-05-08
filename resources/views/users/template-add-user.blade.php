@@ -49,8 +49,8 @@ Please fill in the form below
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input class="form-control" name="text" type="phone" placeholder="0123456789" value="{{ old('phone') }}" />
-                        <label for="inputEmail">Phone</label>
+                        <input class="form-control" name="phone" type="text" placeholder="0123456789" value="{{ old('phone') }}" />
+                        <label>Phone</label>
                     </div>
                 </div>
             </div>
@@ -83,13 +83,13 @@ Please fill in the form below
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <select name="role" class="form-control">
+                        <select name="status" class="form-control">
                             <option value="">-- Pilih Status --</option>
                             @foreach (config('hrm.site.status.user') as $key => $value)
                             <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
                         </select>
-                        <label for="inputFirstName">Role</label>
+                        <label for="inputFirstName">Status</label>
                     </div>
                 </div>
             </div>

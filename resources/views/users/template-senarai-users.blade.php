@@ -18,6 +18,9 @@ Summary
         Senarai Users
     </div>
     <div class="card-body">
+
+        @include('layouts.alerts')
+
         <table id="datatablesSimple">
             <thead>
                 <tr>
@@ -52,7 +55,12 @@ Summary
                     <td>{{ $pengguna->status }}</td>
                     <td>
                         <a href="{{ route('users.edit', $pengguna->id) }}" class="btn btn-info">Edit</a>
-                        <button type="button" class="btn btn-danger">Delete</button>
+
+                        <form method="POST" action="{{ route('users.destroy', $pengguna->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
 
                     </td>
                 </tr>
