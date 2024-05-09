@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\CutiController;
 
 Route::get('/', HomeController::class)->name('utama');
 
@@ -46,6 +47,13 @@ Route::get('/dashboard', DashboardController::class)->name('dashboard');
 // Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 Route::resource('/users', UserController::class);
+
+Route::get('/cuti', [CutiController::class, 'index'])->name('cuti.index');
+Route::get('/cuti/create', [CutiController::class, 'create'])->name('cuti.create');
+Route::post('/cuti/create', [CutiController::class, 'store'])->name('cuti.store');
+Route::get('/cuti/{id}/edit', [CutiController::class, 'edit'])->name('cuti.edit');
+Route::patch('/cuti/{id}/edit', [CutiController::class, 'update'])->name('cuti.update');
+Route::delete('/cuti/{id}', [CutiController::class, 'destroy'])->name('cuti.destroy');
 
 
 
