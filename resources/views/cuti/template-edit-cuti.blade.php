@@ -19,8 +19,9 @@ Please fill in the form below
 
         @include('layouts.alerts')
 
-        <form method="POST" action="{{ route('cuti.store') }}">
+        <form method="POST" action="{{ route('cuti.update', $cuti->id) }}">
             @csrf
+            @method('PATCH')
             <div class="row mb-3">
                 <div class="col-md-12">
                     <div class="form-floating">

@@ -103,14 +103,15 @@ class CutiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Cuti $cuti)
     {
+
         // $cuti = DB::table('cuti')->where('id', '=', $id)->first();
         // $cuti = Cuti::where('id', '=', $id)->first();
         // $cuti = Cuti::whereId($id)->first();
         // $cuti = Cuti::whereId($id)->firstOrCreate(['id' => $id]);
         // $cuti = Cuti::find($id);
-        $cuti = Cuti::findOrFail($id);
+        // $cuti = Cuti::findOrFail($id);
 
         return view('cuti.template-edit-cuti', compact('cuti'));
     }
@@ -120,14 +121,29 @@ class CutiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'user_id' => 'required|integer|exists:users,id',
+            'tarikh_mula' => 'required|date',
+            'tarikh_akhir' => 'required|date',
+            'type' => 'required',
+            'status' => 'required',
+            'reason' => 'nullable|sometimes'
+        ]);
+
+        $cuti = Cuti::findOrFail($id);
+        $cuti->update($data);
+
+        return redirect()->route('cuti.index')->with('response-berjaya', 'Rekod berjaya dikemakini');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Cuti $cuti)
     {
-        //
+        // $cuti = Cuti::findOrFail($id);
+        $cuti->delete();
+
+        return redirect()->route('cuti.index')->with('response-berjaya', 'Rekod berjaya dihapuskan');
     }
 }

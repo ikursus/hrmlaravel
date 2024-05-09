@@ -51,9 +51,9 @@ Route::resource('/users', UserController::class);
 Route::get('/cuti', [CutiController::class, 'index'])->name('cuti.index');
 Route::get('/cuti/create', [CutiController::class, 'create'])->name('cuti.create');
 Route::post('/cuti/create', [CutiController::class, 'store'])->name('cuti.store');
-Route::get('/cuti/{id}/edit', [CutiController::class, 'edit'])->name('cuti.edit');
+Route::get('/cuti/{cuti}/edit', [CutiController::class, 'edit'])->name('cuti.edit'); // Kalau nak guna resource parameter dan Dependencies Injection Model Cuti pada Controller
 Route::patch('/cuti/{id}/edit', [CutiController::class, 'update'])->name('cuti.update');
-Route::delete('/cuti/{id}', [CutiController::class, 'destroy'])->name('cuti.destroy');
+Route::delete('/cuti/{cuti}', [CutiController::class, 'destroy'])->name('cuti.destroy');
 
 
 
