@@ -61,7 +61,7 @@ Please fill in the form below
                         <select name="type" class="form-control">
                             <option value="">-- Pilih Jenis Cuti --</option>
                             @foreach (config('hrm.site.jenis_cuti') as $key => $value)
-                            <option value="{{ $key }}" {{ $key == (old('type') ?? $cuti->type) ? 'selected="selected"' : NULL }}>{{ $value }}</option>
+                            <option value="{{ $key }}" {{ $key == (old('type') ?? $cuti->getRawOriginal('type')) ? 'selected="selected"' : NULL }}>{{ $value }}</option>
                             @endforeach
                         </select>
                         <label>Jenis Cuti</label>

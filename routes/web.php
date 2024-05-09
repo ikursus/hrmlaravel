@@ -22,7 +22,7 @@ Route::post('/signup', [RegisterController::class, 'saveRegistration'])->name('r
 Route::get('/forgot-password', [ForgotPasswordController::class, 'paparBorangForgotPasword'])->name('password.forgot');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'requestPassword'])->name('password.request');
 
-Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
 
 // Pengurusan Users
 // Route untuk paparkan senarai users dari DB
@@ -46,14 +46,25 @@ Route::get('/dashboard', DashboardController::class)->name('dashboard');
 // // Route untuk hapus user daripada DB
 // Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-Route::resource('/users', UserController::class);
+Route::group(['middleware' => 'auth'], function() {
 
-Route::get('/cuti', [CutiController::class, 'index'])->name('cuti.index');
-Route::get('/cuti/create', [CutiController::class, 'create'])->name('cuti.create');
-Route::post('/cuti/create', [CutiController::class, 'store'])->name('cuti.store');
-Route::get('/cuti/{cuti}/edit', [CutiController::class, 'edit'])->name('cuti.edit'); // Kalau nak guna resource parameter dan Dependencies Injection Model Cuti pada Controller
-Route::patch('/cuti/{id}/edit', [CutiController::class, 'update'])->name('cuti.update');
-Route::delete('/cuti/{cuti}', [CutiController::class, 'destroy'])->name('cuti.destroy');
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+    Route::resource('/users', UserController::class);
+
+    Route::get('/cuti', [CutiController::class, 'index'])->name('cuti.index');
+    Route::get('/cuti/create', [CutiController::class, 'create'])->name('cuti.create');
+    Route::post('/cuti/create', [CutiController::class, 'store'])->name('cuti.store');
+    Route::get('/cuti/{cuti}/edit', [CutiController::class, 'edit'])->name('cuti.edit'); // Kalau nak guna resource parameter dan Dependencies Injection Model Cuti pada Controller
+    Route::patch('/cuti/{id}/edit', [CutiController::class, 'update'])->name('cuti.update');
+    Route::delete('/cuti/{cuti}', [CutiController::class, 'destroy'])->name('cuti.destroy');
+
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+});
+
+// Route::middleware(['auth'])->group(function () {});
+
 
 
 

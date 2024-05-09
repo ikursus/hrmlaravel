@@ -31,7 +31,7 @@
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Account</div>
-                            <a class="nav-link" href="charts.html">
+                            <a class="nav-link" href="{{ route('logout') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-sign-out"></i></div>
                                 Log Out
                             </a>

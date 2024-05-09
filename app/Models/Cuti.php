@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cuti extends Model
 {
@@ -21,6 +22,16 @@ class Cuti extends Model
         'reason',
         'jumlah_hari'
     ];
+
+    /**
+     * Get the cuti type.
+     */
+    protected function type(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => ucwords(str_replace('_', ' ', $value)),
+        );
+    }
 
     // Relation one to one (reverse) ke table users / model User
     public function detailUser()

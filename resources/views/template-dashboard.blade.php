@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('page-title')
-Dashboard
+Welcome back {{ auth()->user()->first_name }}!
 @endsection
 
 @section('page-subtitle')
