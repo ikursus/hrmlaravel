@@ -21,5 +21,12 @@ return [
     'role' => [
         'admin' => 'Admin',
         'user' => 'User'
+    ],
+    'jenis_cuti' => [
+        'cuti_sakit' => 'Cuti Sakit',
+        'cuti_bersalin' => 'Cuti Bersalin',
+        'cuti_umrah' => 'Cuti Umrah',
+        'cuti_haji' => 'Cuti Haji',
+        'cuti_tanpa_gaji' => 'Cuti Tanpa Gaji'
     ]
 ];
