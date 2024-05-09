@@ -49,7 +49,7 @@ Summary
             <tbody>
                 @foreach ($senaraiCuti as $cuti)
                 <tr>
-                    <td>{{ $cuti->user_id }}</td>
+                    <td>{{ $cuti->detailUser->first_name }} {{ $cuti->detailUser->last_name }}</td>
                     <td>{{ $cuti->type }}</td>
                     <td>{{ $cuti->tarikh_mula }}</td>
                     <td>{{ $cuti->tarikh_akhir }}</td>
